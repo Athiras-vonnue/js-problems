@@ -7,6 +7,7 @@ function compareNumbers(get, expec) {
   }
 }
 //Subtract two numbers
+
 function subtractNumbers(num1, num2) {
   let res = num1 - num2;
   if (!isNaN(res)) {
@@ -23,6 +24,9 @@ function divideNumbers(num1, num2) {
   let val2 = num2;
   let quotient = 0;
   let res = 0;
+  if (num1 === 0 || num2 === 0) {
+    return 0;
+  }
 
   if (num1 < 0 && num2 < 0) {
     num1 = -num1;
@@ -51,7 +55,9 @@ function divideNumbers(num1, num2) {
     return quotient;
   }
 }
-//modulus two  numbers
+
+//modulus of two  numbers
+
 function modulusNumbers(num1, num2) {
   let val1 = num1;
   let val2 = num2;
@@ -72,6 +78,9 @@ function modulusNumbers(num1, num2) {
   } else if (num1 > num2) {
     remainder = num1;
   }
+  if (num2 === 0 || num1 == 0) {
+    return 0;
+  }
 
   for (let i = 0; remainder >= num2; i++) {
     remainder = subtractNumbers(remainder, num2);
@@ -84,8 +93,6 @@ function modulusNumbers(num1, num2) {
   }
 }
 
-console.log(modulusNumbers(23, 5));
-
 //call testcases
 
 testCase1();
@@ -96,6 +103,16 @@ testCase3();
 
 function testCase1() {
   const testcase = [
+    {
+      input1: 0,
+      input2: 3,
+      expected: -3,
+    },
+    {
+      input1: 3,
+      input2: 0,
+      expected: 3,
+    },
     {
       input1: 1,
       input2: 3,
@@ -121,6 +138,7 @@ function testCase1() {
   for (let i = 0; i < testcase.length; i++) {
     let get = subtractNumbers(testcase[i].input1, testcase[i].input2);
     let got = compareNumbers(get, testcase[i].expected);
+
     if (got) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {
@@ -129,10 +147,20 @@ function testCase1() {
   }
 }
 
-//test case2 for division
+//Testcases for division
 
 function testCase2() {
   const testcase = [
+    {
+      input1: 0,
+      input2: 3,
+      expected: 0,
+    },
+    {
+      input1: 3,
+      input2: 0,
+      expected: 0,
+    },
     {
       input1: 8,
       input2: 4,
@@ -163,12 +191,22 @@ function testCase2() {
       input2: 3,
       expected: -2,
     },
+    {
+      input1: 0,
+      input2: 3,
+      expected: 0,
+    },
+    {
+      input1: 3,
+      input2: 0,
+      expected: 0,
+    },
   ];
 
   for (let i = 0; i < testcase.length; i++) {
     let get = divideNumbers(testcase[i].input1, testcase[i].input2);
-
     let got = compareNumbers(get, testcase[i].expected);
+
     if (got) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {
@@ -180,6 +218,16 @@ function testCase2() {
 //Testcases for modulus
 function testCase3() {
   const testcase = [
+    {
+      input1: 0,
+      input2: 3,
+      expected: 0,
+    },
+    {
+      input1: 3,
+      input2: 0,
+      expected: 0,
+    },
     {
       input1: 8,
       input2: 4,
@@ -214,8 +262,8 @@ function testCase3() {
 
   for (let i = 0; i < testcase.length; i++) {
     let get = modulusNumbers(testcase[i].input1, testcase[i].input2);
-
     let got = compareNumbers(get, testcase[i].expected);
+
     if (got) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {

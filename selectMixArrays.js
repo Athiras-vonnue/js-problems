@@ -2,7 +2,7 @@ console.clear();
 
 //function to compare strings
 
-const compareArray = (arr1, arr2) => {
+function compareArray(arr1, arr2) {
   if (arr1.length != arr2.length) {
     return false;
   } else {
@@ -13,9 +13,32 @@ const compareArray = (arr1, arr2) => {
     }
     return true;
   }
-};
+}
 
-const testCases = () => {
+//problem 1:select Array
+
+function selectArray(arr, num) {
+  let resultArray = [];
+
+  if (num === 0) {
+    return arr;
+  } else if (num > 0) {
+    let number = num + 1;
+
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (number * i <= arr.length - 1) {
+        resultArray.push(arr[number * i]);
+      }
+    }
+  }
+
+  return resultArray;
+}
+//call testcase
+testCases();
+
+//test case for selectArray
+function testCases() {
   const testcases = [
     {
       input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -64,10 +87,49 @@ const testCases = () => {
       console.log(`Test case ${i + 1} is failed`);
     }
   }
-};
-/*Test case 2*/
+}
+//Problem 2: mixArray
 
-const testCases2 = () => {
+function mixArray(arr1, arr2, num) {
+  const resultArray = [];
+
+  let i = 0;
+  let j = 0;
+  if (num > 0) {
+    while (i < arr1.length && j < arr2.length) {
+      for (let k = 0; k < arr1.length; k++) {
+        resultArray.push(arr1[i]);
+        i++;
+        let l = 0;
+        while (l < num && j < arr2.length) {
+          resultArray.push(arr2[j]);
+
+          j++;
+          l++;
+        }
+      }
+    }
+    while (i < arr1.length) {
+      resultArray.push(A[i]);
+      i++;
+    }
+    while (j < arr2.length) {
+      resultArray.push(B[j]);
+      j++;
+    }
+  }
+  if (num === 0) {
+    return arr1.concat(arr2);
+  }
+  return resultArray;
+}
+
+//call testcase for mixArray
+testCases2();
+
+/*Testcase  for mixArray*/
+
+function testCases2() {
   const testcase = [
     {
       input1: [1, 2, 5, 7, 10],
@@ -111,64 +173,4 @@ const testCases2 = () => {
       console.log(`Test case ${i + 1} is failed`);
     }
   }
-};
-/***********************************************************************************************/
-//problem 1:
-
-const selectArray = (arr, num) => {
-  let resultArray = [];
-
-  if (num === 0) {
-    return arr;
-  } else if (num > 0) {
-    let number = num + 1;
-
-    for (let i = 0; i < arr.length - 1; i++) {
-      if (number * i <= arr.length - 1) {
-        resultArray.push(arr[number * i]);
-      }
-    }
-  }
-
-  return resultArray;
-};
-
-testCases();
-
-console.log("**************Problem 2*********************");
-
-const mixArray = (A, B, num) => {
-  const resultArray = [];
-
-  let i = 0;
-  let j = 0;
-  if (num > 0) {
-    while (i < A.length && j < B.length) {
-      for (let k = 0; k < A.length; k++) {
-        resultArray.push(A[i]);
-        i++;
-        let l = 0;
-        while (l < num && j < B.length) {
-          resultArray.push(B[j]);
-
-          j++;
-          l++;
-        }
-      }
-    }
-    while (i < A.length) {
-      resultArray.push(A[i]);
-      i++;
-    }
-    while (j < B.length) {
-      resultArray.push(B[j]);
-      j++;
-    }
-  }
-  if (num === 0) {
-    return A.concat(B);
-  }
-  return resultArray;
-};
-
-testCases2();
+}
