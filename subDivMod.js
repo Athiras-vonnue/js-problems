@@ -27,7 +27,7 @@ function divideNumbers(num1, num2) {
   if (num1 === 0 || num2 === 0) {
     return 0;
   }
-
+  //neutralising minus sign
   if (num1 < 0 && num2 < 0) {
     num1 = -num1;
     num2 = -num2;

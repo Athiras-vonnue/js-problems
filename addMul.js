@@ -1,7 +1,7 @@
 //function to compare two arrays
 
 function compareNumbers(get, expec) {
-  if (get !== expec) {
+  if (get != expec) {
     return false;
   } else {
     return true;
@@ -13,7 +13,7 @@ function compareNumbers(get, expec) {
 function addNumbers(num1, num2) {
   let res = num1 + num2;
   if (isNaN(res)) {
-    return false;
+    return true;
   } else {
     return res;
   }
@@ -84,6 +84,11 @@ function testCase1() {
       input1: -8,
       input2: -3,
       expected: -11,
+    },
+    {
+      input1: "a",
+      input2: "b",
+      expected: true,
     },
   ];
 

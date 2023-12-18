@@ -11,9 +11,14 @@ function compareNumbers(get, expec) {
 //problem 1:function to find hypotenuse
 
 function findHypotenuse(height, base) {
-  return Math.sqrt(height * height + base * base);
+  let hypotenuse = height * height + base * base;
+  for (let i = 0; i < hypotenuse / 2; i++) {
+    if (i * i === hypotenuse) {
+      return i;
+    }
+  }
+  return 0;
 }
-
 testCase1();
 
 //testcases
@@ -55,6 +60,11 @@ function testCase1() {
       base: -4,
       expec: 5,
     },
+    {
+      height: 1,
+      base: 5,
+      expec: 0,
+    },
   ];
   for (let i = 0; i < testcase.length; i++) {
     let get = findHypotenuse(testcase[i].height, testcase[i].base);
@@ -70,16 +80,11 @@ function testCase1() {
 //problem2 - find right angle triangle
 
 function isRightAngleTriangle(side1, side2) {
-  let sideC = side1 * side1 + side2 * side2;
-  let result = false;
-
-  for (let i = 0; i < sideC / 2; i++) {
-    if (i * i === sideC) {
-      result = true;
-      break;
-    }
+  const result = findHypotenuse(side1, side2);
+  if (result) {
+    return true;
   }
-  return result;
+  return false;
 }
 
 testCase2();
