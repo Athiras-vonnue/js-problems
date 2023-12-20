@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multimedia</title>
+    <style>
+        img {
+            width: 320px
+        }
+    </style>
 </head>
 
 <body>
@@ -40,8 +45,16 @@
 
     <!-- Responsive Images -->
 
-    <img srcset="download.jpg 480w, download-800vw.jpg 800w" sizes="(max-width:600px) 480px,800px" src="download.jpeg"
+    <img srcset="download.jpeg 480w, download.jpeg 800w" sizes="(max-width:600px) 480px,800px" src="download.jpeg"
         alt="panda" />
+
+    <img srcset="download.jpeg, download.jpeg 1.5x, download.jpeg 2x" alt="panda image" />
+    <picture>
+        <source media="(max-width:799px)" srcset="download.jpeg" />
+        <source media="(min-width:800px)" srcset='download.jpeg' />
+        <img src="download.jpeg" alt="panda" />
+    </picture>
+
 </body>
 
 </html>
