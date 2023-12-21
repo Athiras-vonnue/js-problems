@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimedia</title>
+</head>
+
+<body>
+    <h2>Images</h2>
+    <img src="cat.jpeg" alt="cat image" width="400" height="341">
+    <h2>Image titles</h2>
+    <img src="cat.jpeg" width="300" height="300" title="cute cat">
+    <figure>
+        <img src="cat.jpeg" alt="cat image" width="400" height="341">
+        <figcaption>
+            A cute cat
+        </figcaption>
+    </figure>
+
+    <h2>Video and audio content</h2>
+
+    <h3>video Element</h3>
+
+    <video src="rabbit320.webm" controls>
+        <p>
+            Your browser doesen't support HTML video. Here is a
+            <a href="shdsd">lnk to the video</a> instead
+        </p>
+    </video>
+
+    <!-- add different formated data -->
+
+    <video controls>
+        <source src="rabbit.mp4" type="video/mp4" />
+        <source src="rabbit.webm" type="video/webm" />
+        <p>
+            Your browser doesn't support this video. Here is a <a href="rabbit.mp4">link to the video </a> instead
+        </p>
+    </video>
+
+    <h2>Other features</h2>
+    <video controls width="400" height="400" autoplay loop muted preload="auto" poster="poster.png">
+        <source src="rabbit320.mp4" type="video/mp4" />
+        <source src="rabbit320.webm" type="video/webm" />
+        <p>
+            Your browser doesn't support this video. Here is a <a href="rabbit320.mp4">
+                link to the video</a> instead.
+        </p>
+    </video>
+
+    <h2>Adding subtitles</h2>
+    <video controls>
+        <source src="example.mp4" type="video/mp4" />
+        <source src="example.webp" type="video/webm" />
+        <track kind="subtitles" src=subtitles_es_vtt srclang="es" label="Spanish" />
+    </video>
+    <h2>iframe- other Embedding Technologies</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jS4aFq5-91M?si=Mo7Zqg1jJ89NEget"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;sandbox"
+        allowfullscreen></iframe>
+
+    <h2>Creating SVG</h2>
+
+    <svg version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="black" />
+        <circle cx="150" cy="100" r="90" fill="blue" />
+    </svg>
+
+    <h2>Sample svg</h2>
+
+    <svg width="100%" height="100%">
+        <rect width="100%" height="100%" fill="red" />
+        <circle cx="100%" cy="100%" r="150" fill="blue" stroke="black" />
+        <polygon points="120,0 240,255 0,255" fill="green" />
+        <text x="50" y="100" font-family="Verdana" font-size="55" fill="white" stroke="black"
+            stroke-width="2">Hello!</text>
+    </svg>
+
+    <h2>Responsive Images</h2>
+    <picture>
+        <source media="(min-width:650px)" srcset="lotus.jpeg">
+        <source media="(min-width:465px)" srcset="rose.jpeg">
+        <img src="flowers.avif" alt="flower" style="width:auto;">
+    </picture>
+</body>
+
+</html>
