@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <script src="script.js" defer></script>
+    <style>
+        .hidden {
+            display: none
+        }
+
+        .tile {
+            height: 100px;
+            width: 25%;
+            float: left
+        }
+    </style>
+</head>
+
+<body>
+    <button>Change Color</button>
+    <form>
+        <div>
+            <label for="fName">First Name:</label>
+            <input id="fName" type="text">
+        </div>
+        <div>
+            <label for="lName">Last Name:</label>
+            <input id="lName" type="text">
+        </div>
+        <div>
+            <input id="submit" type="submit" />
+        </div>
+    </form>
+    <p id="para"></p>
+
+    <div id="container">
+        <button id="butn">Click me</button>
+        <!-- <span>Click me span</span>
+        <img src="" alt="image"> -->
+    </div>
+    <p id="output"></p>
+    <h2>video player example</h2>
+    <button class="button">Display Video</button>
+
+    <div class="hidden div">
+        <video>
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm" />
+            <p>
+                Your browser doesn't support html video.Here is a
+                <a href="rabbit.com">Link to the video</a> instead
+            </p>
+        </video>
+    </div>
+    <h2>Event delegation</h2>
+    <div id="tile-container">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+    </div>
+</body>
+
+</html>
