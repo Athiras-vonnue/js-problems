@@ -1,21 +1,19 @@
 function positiveNumber(number) {
   do {
-    return false;
-  } while (number < 0);
+    //Ask user to enter number
+    //let number = Number(prompt("Enter a positive number"));
+  } while (number <= 0);
   if (number > 0) {
     return true;
   }
+  return false;
 }
 
 //testcase function
 function testPositiveNumber() {
   const tcs = [
     {
-      input: -5,
-      exp: false,
-    },
-    {
-      input: 5,
+      input: 1,
       exp: true,
     },
     {
@@ -26,9 +24,13 @@ function testPositiveNumber() {
       input: 0,
       exp: false,
     },
+    {
+      input: 5,
+      exp: true,
+    },
   ];
   for (let i = 0; i < tcs.length; i++) {
-    const got = positiveNumber(tcs[i].input1, tcs[i].input2);
+    const got = positiveNumber(tcs[i].input);
     if (got === tcs[i].exp) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {

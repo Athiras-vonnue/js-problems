@@ -1,10 +1,19 @@
-function smallestInteger(num) {
-  let i = num;
-  // need to complete
+//factorial of a number using do while loop
+function factorial(n) {
+  if (n > 0) {
+    let fact = 1;
+
+    do {
+      fact *= n;
+      n--;
+    } while (n != 0);
+
+    return fact;
+  }
   return -1;
 }
-console.log(smallestInteger(5));
-function testSmallestInteger() {
+
+function testFactorial() {
   const tcs = [
     {
       input: 5,
@@ -25,4 +34,4 @@ function testSmallestInteger() {
   }
 }
 
-testSmallestInteger();
+testFactorial();

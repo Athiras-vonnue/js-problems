@@ -3,7 +3,7 @@
 function isVowel(input) {
   //we can change the input to any of the case using toLower/toUpperCase, it reduces the checking conditions by half
 
-  if (input >= "a" || input <= "z" || input >= "A" || input <= "Z") {
+  if ((input >= "a" && input <= "z") || (input >= "A" && input <= "Z")) {
     if (
       input === "a" ||
       input === "e" ||
