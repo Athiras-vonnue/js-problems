@@ -1,24 +1,25 @@
 //capitalize first letter of each word in a sentence
-//count words in a sentence
 
 function capitalizeLetter(string) {
-  let words = [];
-  if (string.length > 0) {
-    let index = 0;
-    i = 0;
-    do {
-      //not completed
-      string = string[index].toUpperCase() + string[i + 1];
-      index = i + 1;
-      i++;
-    } while (i < string.length);
-    console.log(string);
-  }
+  let letter = "";
+  let sentence = "";
 
+  if (string.length > 0) {
+    let index = [];
+    let k = 1;
+    for (let i = 1; i < string.length; i++) {
+      index[0] = 0;
+      if (string[i] === " ") {
+        index[k] = i + 1;
+        k++;
+      }
+    }
+  }
   return -1;
 }
 
-console.log(capitalizeLetter("string"));
+console.log(capitalizeLetter("string hii"));
+
 //test function
 
 function testCapitalizeLetter() {
@@ -50,4 +51,5 @@ function testCapitalizeLetter() {
   }
 }
 
-testCapitalizeLetter();
+//testCapitalizeLetter();
+//

@@ -2,26 +2,22 @@
 
 function removeDuplicates(array) {
   const unique = [];
-  let res = false;
-  if (array.length != 0) {
-    if (unique.length == 0) {
-      unique[0] = array[0];
-    }
-    let k = 1;
-    for (let i = 0; i < array.length; i++) {
-      for (let j = 0; j < unique.length; j++) {
-        if (array[i] != unique[i]) {
-          unique[k] = array[i];
-          k++;
-        }
+
+  if (unique.length == 0) {
+    unique[0] = array[0];
+  } else {
+    let j = 0;
+    for (let i = 0; i < unique.length; i++, j++) {
+      while (unique[j] !== array[i] && j < unique.length) {
+        unique[j] = array[i];
       }
     }
   }
-
+  console.log(unique);
   return unique;
-
-  return -1;
 }
+
+console.log(removeDuplicates([1, 2, 3, 4, 1, 2]));
 
 function testRemoveDuplicates() {
   const tcs = [
@@ -53,4 +49,4 @@ function testRemoveDuplicates() {
   }
 }
 
-testRemoveDuplicates();
+//testRemoveDuplicates();
