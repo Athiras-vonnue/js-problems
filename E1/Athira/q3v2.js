@@ -11,9 +11,9 @@ function grade(score) {
     return "D";
   } else if (score >= 50 && score <= 59) {
     return "E";
-  } else if (score >= 40 && score <= 49) {
+  } else if (score <= 49) {
     return "F";
-  } else if (score > 100 ) {
+  } else if (score > 100 && score <= 0) {
     return -1;
   }
   return -1;
@@ -37,6 +37,14 @@ function testGrade() {
     },
     {
       input: 150,
+      exp: -1,
+    },
+    {
+      input: 30,
+      exp: "F",
+    },
+    {
+      input: 0,
       exp: -1,
     },
   ];

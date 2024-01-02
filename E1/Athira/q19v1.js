@@ -74,13 +74,6 @@ function generatePassword(length) {
       "&",
       "*",
     ];
-    // let randomNumber = Math.floor(Math.random() * alphabets.length) + 1;
-    // let characterCode = "A".charCodeAt();
-    // randomCharacter = randomNumber + characterCode;
-    // get the character which having the received character code from above
-
-    //without character code, saved all alphabets in an array
-
     let i = 0;
     do {
       password += alphabets[randomNumber];

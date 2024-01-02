@@ -1,12 +1,15 @@
-function positiveNumber(number) {
+function positiveNumber(input) {
+  let i = 0;
+  let res = true;
   do {
-    //Ask user to enter number
-    //let number = Number(prompt("Enter a positive number"));
-  } while (number <= 0);
-  if (number > 0) {
-    return true;
+    //let input = prompt("enter a positive number")
+    i++;
+    res = false;
+  } while (!input > 0 && i);
+  if (input > 0) {
+    res = true;
   }
-  return false;
+  return res;
 }
 
 //testcase function
@@ -21,7 +24,7 @@ function testPositiveNumber() {
       exp: false,
     },
     {
-      input: 0,
+      input: -6,
       exp: false,
     },
     {

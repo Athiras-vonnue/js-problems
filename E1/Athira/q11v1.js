@@ -1,22 +1,46 @@
 function smallestInteger(num) {
-  let i = num;
-  // need to complete
+  if (num > 0) {
+    let integer = num;
+
+    while (integer != 0) {
+      let j = 1;
+      let count = 0;
+
+      while (j <= num) {
+        if (integer % j === 0) {
+          count++;
+        }
+        j++;
+      }
+
+      if (count == num) {
+        return integer;
+        break;
+      }
+      integer++;
+    }
+  }
   return -1;
 }
-console.log(smallestInteger(5));
+
+//testcase function
 function testSmallestInteger() {
   const tcs = [
     {
       input: 5,
-      exp: 120,
+      exp: 60,
     },
     {
-      input: -10,
+      input: 4,
+      exp: 12,
+    },
+    {
+      input: -3,
       exp: -1,
     },
   ];
   for (let i = 0; i < tcs.length; i++) {
-    const got = factorial(tcs[i].input);
+    const got = smallestInteger(tcs[i].input);
     if (got === tcs[i].exp) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {

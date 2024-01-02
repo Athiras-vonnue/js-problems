@@ -1,6 +1,6 @@
 function checkNumber(num) {
   if (num === 0) {
-    return 0;
+    return "zero";
   } else if (num > 0) {
     return "positive";
   } else if (num < 0) {
@@ -22,7 +22,7 @@ function testCheckNumber() {
     },
     {
       input: 0,
-      exp: 0,
+      exp: "zero",
     },
     {
       input: "a",

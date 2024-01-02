@@ -47,7 +47,11 @@ function testIsVowel() {
       exp: false,
     },
     {
-      input: 0,
+      input: "A",
+      exp: true,
+    },
+    {
+      input: "/",
       exp: -1,
     },
     {

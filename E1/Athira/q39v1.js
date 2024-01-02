@@ -3,39 +3,73 @@ const students = [
     name: "Aaron",
     Age: 15,
     noOfSubjects: 5,
-    mark: [
-      { Subject: "Maths", mark: 69 },
-      { Subject: "English", mark: 80 },
-      { Subject: "Computer", mark: 85 },
-    ],
+    isDaySchollar: true,
   },
   {
     name: "Anu",
     Age: 15,
     noOfSubjects: 5,
-    mark: [
-      { Subject: "Maths", mark: 89 },
-      { Subject: "English", mark: 100 },
-      { Subject: "Computer", mark: 90 },
-    ],
+    isDaySchollar: false,
   },
   {
     name: "Banu",
     Age: 15,
     noOfSubjects: 5,
-    mark: [
-      { Subject: "Maths", mark: 29 },
-      { Subject: "English", mark: 30 },
-      { Subject: "Computer", mark: 45 },
-    ],
+    isDaySchollar: true,
   },
 ];
 
-function getData() {
-  let data = [];
-  for (let i = 0; i < students.length; i++) {
-    data[i] = students[i].name;
+function getProperty(ObjArray, property) {
+  let resObj = [];
+  for (let i = 0; i < ObjArray.length; i++) {
+    for (prop in ObjArray[i]) {
+      if (prop === property) {
+        resObj[i] = `{${prop} : ${students[i][prop]}}`;
+      }
+    }
   }
-  return data;
+  return resObj;
 }
-getData();
+//console.log(getData());
+
+//test cases
+function testGetProperty() {
+  const tcs = [
+    {
+      input1: students,
+      input2: "name",
+      exp: ["{name : Aaron}", "{name : Anu}", "{name : Banu}"],
+    },
+    {
+      input1: students,
+      input2: "isDaySchollar",
+      exp: [
+        "{isDaySchollar : true}",
+        "{isDaySchollar : false}",
+        "{isDaySchollar : true}",
+      ],
+    },
+  ];
+
+  for (let i = 0; i < tcs.length; i++) {
+    const got = getProperty(tcs[i].input1, tcs[i].input2);
+
+    if (compareObj(got, tcs[i].exp)) {
+      console.log(`Testcase ${i + 1} is passed`);
+    } else {
+      console.log(`Testcase ${i + 1} is failed`);
+    }
+  }
+}
+
+//compare objects
+function compareObj(got, exp) {
+  for (let i = 0; i < got.length; i++) {
+    if (got[i] !== exp[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+testGetProperty();

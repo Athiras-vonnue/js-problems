@@ -1,13 +1,15 @@
-function guessingGame(number) {
+function guessingGame(input) {
   //To generate the random numbers
   //const randomNumber = Math.floor(Math.random() * 10) + 1;
 
-  //let input = prompt("Guess a number between 1 to 10");
   let secretNumber = 10;
+  //input = prompt("Guess a number between 1 to 10");
 
-  while (secretNumber === number) {
+  while (secretNumber === input) {
+    //alert("You got it!");
     return true;
   }
+  //alert("lost!");
   return false;
 }
 

@@ -27,6 +27,7 @@ function getTotalPrice(cartItems) {
   return total;
 }
 
+//test cases
 function testGetTotalPrice() {
   const tcs = [
     {
