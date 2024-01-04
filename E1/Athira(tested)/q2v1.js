@@ -1,7 +1,7 @@
-function isVowel(input) {
-  //we can change the input to any of the case using toLower/toUpperCase, it reduces the checking conditions by half
+//Function to determine whether the  given input is vowel/ consonant
 
-  if (input >= "a" || input <= "z" && input >= "A" || input <= "Z") {
+function isVowel(input) {
+  if ((input >= "a" && input <= "z") || (input >= "A" && input <= "Z")) {
     if (
       input === "a" ||
       input === "e" ||
@@ -54,7 +54,6 @@ function testIsVowel() {
       input: "F",
       exp: false,
     },
-    
   ];
   for (let i = 0; i < tcs.length; i++) {
     const got = isVowel(tcs[i].input);

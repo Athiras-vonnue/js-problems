@@ -1,23 +1,20 @@
+//count vowels in a  string
+
 function isVowel(input) {
   //we can change the input to any of the case using toLower/toUpperCase, it reduces the checking conditions by half
 
-  if (input >= "a" || input <= "z" && input >= "A" || input <= "Z") {
-    if (
-      input === "a" ||
-      input === "e" ||
-      input === "i" ||
-      input === "o" ||
-      input === "u" ||
-      input === "A" ||
-      input === "E" ||
-      input === "I" ||
-      input === "O" ||
-      input === "U"
-    ) {
-      return true;
-    } else {
-      return false;
+  if ((input >= "a" && input <= "z") || (input >= "A" && input <= "Z")) {
+    const vowels = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"];
+    let result = false;
+
+    for (let i = 0; i < vowels.length; i++) {
+      if (input === vowels[i]) {
+        result = true;
+        break;
+      }
     }
+
+    return result;
   } else {
     return -1;
   }
@@ -39,7 +36,7 @@ function countVowels(string) {
 function testIsVowel() {
   const tcs = [
     {
-      input: "a",
+      input: "e",
       exp: true,
     },
     {
@@ -54,7 +51,18 @@ function testIsVowel() {
       input: "F",
       exp: false,
     },
-    
+    {
+      input: "",
+      exp: -1,
+    },
+    {
+      input: {},
+      exp: -1,
+    },
+    {
+      input: [],
+      exp: -1,
+    },
   ];
   for (let i = 0; i < tcs.length; i++) {
     const got = isVowel(tcs[i].input);

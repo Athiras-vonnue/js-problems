@@ -23,7 +23,14 @@ function testMultiplicationTable() {
       input: -5,
       exp: [-1],
     },
-    
+    {
+      input: 0,
+      exp: [-1],
+    },
+    {
+      input: "a",
+      exp: [-1],
+    },
   ];
   for (let i = 0; i < tcs.length; i++) {
     const got = multiplicationTable(tcs[i].input);

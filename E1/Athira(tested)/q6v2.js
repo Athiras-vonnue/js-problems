@@ -28,6 +28,10 @@ function testEvenNumbers() {
       input: -1,
       exp: [-1],
     },
+    {
+      input: 0,
+      exp: [-1],
+    },
   ];
   for (let i = 0; i < tcs.length; i++) {
     const got = evenNumbers(tcs[i].input);

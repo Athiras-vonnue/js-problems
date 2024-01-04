@@ -1,5 +1,5 @@
 function smallestInteger(num) {
-  if (num == 0) {
+  if (num === 0) {
     return 0;
   } else if (num > 0) {
     let integer = num;
@@ -33,6 +33,10 @@ function testSmallestInteger() {
       exp: 60,
     },
     {
+       input:10, //added new testcase
+       exp:2520
+    },
+    {
       input: 4,
       exp: 12,
     },
@@ -51,6 +55,10 @@ function testSmallestInteger() {
     {
       input: 0,
       exp: 0,
+    },
+    {
+      input: "q",
+      exp: -1,
     },
   ];
   for (let i = 0; i < tcs.length; i++) {

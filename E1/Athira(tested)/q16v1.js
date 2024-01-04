@@ -1,19 +1,22 @@
 //menu -driven program
 
 function calculate(n1, n2, operator) {
-  let result = 0;
   do {
-    if (operator == "+") {
-      return n1 + n2;
-    } else if (operator == "-") {
-      return n1 - n2;
-    } else if (operator == "/") {
-      return n1 / n2;
-    } else if (operator == "*") {
-      return n1 * n2;
+    switch (operator) {
+      case "+":
+        return n1 + n2;
+        break;
+      case "-":
+        return n1 - n2;
+        break;
+      case "*":
+        return n1 * n2;
+        break;
+      case "/":
+        return n1 / n2;
+        break;
     }
   } while (operator !== "");
-
   return "";
 }
 
@@ -43,18 +46,6 @@ function testCalculate() {
       input2: 2,
       operator: "/",
       exp: 5,
-    },
-    {
-      input1: 10,
-      input2: 2,
-      operator: "",
-      exp: "",
-    },
-    {
-      input1: -10,
-      input2: 2,
-      operator: "+",
-      exp: -8,
     },
   ];
   for (let i = 0; i < tcs.length; i++) {

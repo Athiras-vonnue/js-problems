@@ -91,9 +91,13 @@ Object.assign(Persons.prototype, studentProto);
 
 const reuben = new Persons("Reuben");
 reuben.greet();
+const ram = new Persons("Ram");
 
 //Object Methods
 //hasOwn
 
-console.log(Object.hasOwn(reuben, "name"));
+console.log(Object.hasOwns(reuben, "name"));
 console.log(Object.hasOwn(sara, "introduce"));
+console.log(Object.hasOwns(ram, "name"));
+
+//

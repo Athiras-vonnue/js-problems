@@ -1,4 +1,5 @@
 function evenNumbers(n) {
+  if (n <= 0 || typeof n !== "number") return [];
   const even = [];
   let j = 0;
   if (n > 0) {
@@ -26,12 +27,16 @@ function testEvenNumbers() {
     },
     {
       input: -1,
-      exp: [-1],
+      exp: [],
+    },
+    {
+      input: 0,
+      exp: [],
     },
   ];
   for (let i = 0; i < tcs.length; i++) {
     const got = evenNumbers(tcs[i].input);
-    if (compareArray(got, tcs[i].exp)) {
+    if (compareArrays(got, tcs[i].exp)) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {
       console.log(`Testcase ${i + 1} is failed`);
@@ -42,14 +47,12 @@ testEvenNumbers();
 
 //compare two arrays
 
-function compareArray(got, exp) {
-  if (got.length !== exp.length) {
-    return false;
-  } else {
-    for (let i = 0; i < got.length; i++) {
-      if (got[i] === exp[i]) {
-        return true;
-      }
-    }
+function compareArrays(array1, array2) {
+  let i = 0;
+  while (array1[i]) {
+    if (array1[i] !== array2[i]) return false;
+
+    i++;
   }
+  return true;
 }

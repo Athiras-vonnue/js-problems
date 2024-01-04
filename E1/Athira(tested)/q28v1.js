@@ -1,4 +1,5 @@
-function removeSpaces(sentence) {
+function isSentencePalindrome(sentence) {
+  let reverse = "";
   let withoutSpace = "";
 
   if (sentence.length > 0) {
@@ -7,8 +8,11 @@ function removeSpaces(sentence) {
         withoutSpace += sentence[i];
       }
     }
+    for (let i = withoutSpace.length - 1; i >= 0; i--) {
+      reverse += withoutSpace[i];
+    }
 
-    return withoutSpace;
+    return withoutSpace === reverse ? true : false;
   }
 
   return -1;
@@ -16,31 +20,27 @@ function removeSpaces(sentence) {
 
 //test function
 
-function testRemoveSpaces() {
+function testIsSentencePalindrome() {
   const tcs = [
     {
       input: "madam in",
-      exp: "madamin",
+      exp: false,
     },
     {
       input: "nurses run",
-      exp: "nursesrun",
+      exp: true,
     },
     {
-      input: " Malayalam lang ",
-      exp: "Malayalamlang",
+      input: "Malayalam lang",
+      exp: false,
     },
     {
-      input: [],
-      exp: -1,
-    },
-    {
-      input: {},
+      input: 123,
       exp: -1,
     },
   ];
   for (let i = 0; i < tcs.length; i++) {
-    const got = removeSpaces(tcs[i].input);
+    const got = isSentencePalindrome(tcs[i].input);
 
     if (got === tcs[i].exp) {
       console.log(`Testcase ${i + 1} is passed`);
@@ -50,4 +50,4 @@ function testRemoveSpaces() {
   }
 }
 
-testRemoveSpaces();
+testIsSentencePalindrome();

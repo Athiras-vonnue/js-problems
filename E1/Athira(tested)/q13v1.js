@@ -15,7 +15,7 @@ function fibonacci(range) {
     return fib;
   }
 
-  return [-1];
+  return [];
 }
 
 //testcase function
@@ -28,23 +28,23 @@ function testFibonacci() {
     },
     {
       input: -10,
-      exp: [-1],
+      exp: [],
     },
     {
       input: "a",
-      exp: [-1],
+      exp: [],
     },
     {
       input: 0,
-      exp: [-1],
+      exp: [],
     },
     {
       input: {},
-      exp: [-1],
+      exp: [],
     },
     {
       input: [],
-      exp: [-1],
+      exp: [],
     },
     {
       input: 1,
@@ -54,8 +54,8 @@ function testFibonacci() {
 
   for (let i = 0; i < tcs.length; i++) {
     const got = fibonacci(tcs[i].input);
-    console.log(got);
-    if (compareArray(got, tcs[i].exp)) {
+
+    if (compareArrays(got, tcs[i].exp)) {
       console.log(`Testcase ${i + 1} is passed`);
     } else {
       console.log(`Testcase ${i + 1} is failed`);
@@ -67,14 +67,12 @@ testFibonacci();
 
 //compare function
 
-function compareArray(got, exp) {
-  if (got.length !== exp.length) {
-    return false;
-  } else {
-    for (let i = 0; i < got.length; i++) {
-      if (got[i] === exp[i]) {
-        return true;
-      }
-    }
+function compareArrays(array1, array2) {
+  let i = 0;
+  while (array1[i]) {
+    if (array1[i] !== array2[i]) return false;
+
+    i++;
   }
+  return true;
 }
