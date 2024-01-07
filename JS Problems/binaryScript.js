@@ -1,20 +1,32 @@
 function getBinary(num) {
+  if (typeof num !== "number") return "invalid";
+
   let i = 0;
-  let binary = "";
-  while (num % 2 !=1) {
+  let res = "";
+  binary = "";
+
+  if (num === 0) {
+    res += "*";
+  }
+
+  while (num) {
     if (num % 2 === 0) {
-      binary += "*";
+      res += "*";
     } else {
-      binary += "+";
+      res += "+";
     }
 
     num = Math.floor(num / 2);
-    console.log(num);
+  }
+
+  let k = res.length - 1;
+  while (res[k]) {
+    binary += res[k];
+    k--;
   }
   return binary;
 }
 
-
-console.log(getBinary(6));
+console.log(getBinary(5));
 
 //testcases

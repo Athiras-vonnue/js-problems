@@ -23,19 +23,23 @@ function divide(n1, n2) {
   return quotient;
 }
 
+function commonFactor(n1, n2) {
+  let i = 2;
+  let gcd = 0;
+  while (n1 >= i && n2 >= i) {
+    if (n1 % i == 0 && n2 % i == 0) {
+      gcd = i;
+    }
+    i++;
+  }
+  return gcd;
+}
 function minimalFraction(n1, n2) {
-  let n1Res = n1;
-  let n2Res = n2;
-  let j;
-  console.log(n1Res);
-  do {
-    j = 2;
-    n1Res = divide(n1Res, j);
-    n2Res = divide(n2Res, j);
-    j++;
-  } while (n1Res % j === 0 && n2Res % j == 0);
+  let gcd = commonFactor(n1, n2);
+  let n1Res = divide(n1, gcd);
+  let n2Res = divide(n2, gcd);
 
   return `${n1Res}/${n2Res}`;
 }
 
-console.log(minimalFraction(4, 12));
+console.log(minimalFraction(25, 5));
