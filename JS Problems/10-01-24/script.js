@@ -1,5 +1,5 @@
 function factorial(n) {
-  let maxRange = 90000999999999;
+  let maxRange = 9999999999999998;
 
   if (n === 0) return 1;
   if (n < 0 || typeof n !== "number") return -1;
@@ -16,7 +16,7 @@ function factorial(n) {
 }
 
 function findExponent(num, exp) {
-  let maxRange = 90000999999999;
+  let maxRange = 9999999999999998;
 
   if (num < 0 || exp < 0 || typeof num !== "number" || typeof exp !== "number")
     return 0;
@@ -60,12 +60,11 @@ function findFactor(val) {
 
 function seqMax(val, term) {
   if (
-    !val ||
-    !term ||
     typeof val !== "number" ||
     typeof term !== "number" ||
     val < 0 ||
-    term < 0
+    term < 0 ||
+    !term
   )
     return 0;
 
@@ -138,6 +137,11 @@ function testFindExponent() {
     },
     {
       input1: 3,
+      input2: 0,
+      exp: 1,
+    },
+    {
+      input1: 0,
       input2: 0,
       exp: 1,
     },
@@ -236,8 +240,8 @@ function testSeqMax() {
       exp: 0,
     },
     {
-      input1: "580",
-      input2: 2,
+      input1: 360,
+      input2: 1,
       exp: 0,
     },
     {
