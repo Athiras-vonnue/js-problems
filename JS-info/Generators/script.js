@@ -67,3 +67,35 @@ let generator2 = gen();
 console.log(generator2.next().value);
 console.log(generator2.next(4).value);
 console.log(generator2.next(9).done);
+
+//await iterator
+
+let ranges = {
+  from: 1,
+  to: 5,
+
+  [Symbol.asynIteratorc]() {
+    return {
+      current: this.from,
+      last: this.to,
+      async next() {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      },
+    };
+  },
+};
+(async () => {
+  for await (let value of range) {
+    console.log(value);
+  }
+})();
+
+/*
+
+*/

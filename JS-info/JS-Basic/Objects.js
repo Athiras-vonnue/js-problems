@@ -241,5 +241,58 @@ user = {};
 let userd = undefined;
 let x = 0;
 
-userd?.sayHi(x++);
+// userd?.sayHi(x++);
 console.log(x);
+
+//Symbols
+
+let id = Symbol("id");
+let ids = Symbol.for("id");
+let user21 = {
+  name: "John",
+  [id]: 123,
+};
+
+console.log(user21[id]);
+user21[id] = 345;
+console.log(user21[id]);
+
+console.log(Symbol.keyFor(ids));
+
+//Objects to primitive
+
+let ob = {
+  name: "Catherine",
+};
+// let ob1;
+// ob1[ob] = 123;
+console.log(ob);
+
+let num = Number(ob);
+//console.log(typeof num);
+
+let user14 = {
+  name: "John",
+  money: 1000,
+
+  [Symbol.toPrimitive](hint) {
+    console.log(`hint:${hint}`);
+    return hint == "string" ? `{name: "${this.name}}` : this.money;
+  },
+};
+console.log(user14 + 500);
+
+let user15 = {
+  name: "Ann",
+  money: 2000,
+  toString() {
+    return `name:"${this.name}"}`;
+  },
+  valueOf() {
+    return this.money;
+  },
+};
+
+console.log(user15);
+console.log(+user15);
+console.log(user15 + 500);

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser API</title>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Browser API</h1>
+    <div id="myDiv">Hii</div>
+    <p>Hello</p>
+    <div class="contents">
+        <ul class="book">
+            <li class="chapter">Chapter 1</li>
+            <li class="chapter">Chapter 2</li>
+        </ul>
+    </div>
+    <div id="news">
+        <h1>HeadLine!</h1>
+        <p>Martians attack People!</p>
+    </div>
+    <div id="elem1"></div>
+    <div id="elem2"></div>
+    <div>Both divs below are hidden</div>
+    <div hidden>With the attribute "hidden</div>
+    <div id="elem">Javascript assigned the property "hidden"</div>
+    <script>
+        //alert(news.textContent)
+        let name = prompt("What's your name?", "<b>Winnie-the=Pooh!</b>")
+        elem1.innerHTML = name;
+        elem2.textContent = name
+        elem.hidden = true
+    </script>
+</body>
+
+</html>

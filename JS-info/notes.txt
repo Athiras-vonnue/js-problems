@@ -1,0 +1,24 @@
+"use strict" => Js supported older features and new features
+if we want to use only the modern version of th JS, then we can mension "use strict" to the code
+
+pure functional programming Languages => we cant reuse the variables
+
+==> Data types
+1.bigInt => +-2^53-1 => range of number
+JS supports 64 bit
+2.string
+3.null => nothing/empty
+4.undefined => value not assigned
+5.Objects
+6.typeof
+
+//interactions
+
+1.alert - model window we cant access that window
+2.prompt - title, default => if nothing passed as default then it will consider empty with the empty user input
+3.confirm => true/false
+
+//Logical operators
+1."AND"
+2."OR"=> finds fist truthy values
+3."NOT"
