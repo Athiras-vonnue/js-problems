@@ -59,6 +59,78 @@ const studentObj = {
   ],
 };
 
+const studentObj1 = {
+  class: "A",
+  students: [
+    {
+      name: "Joan",
+      roll_no: 1,
+      subjects: [
+        { subject: "Maths", score: 80 },
+        { subject: "Physics", score: 70 },
+        { subject: "Chemistry", score: 50 },
+        { subject: "Computer", score: 100 },
+        { subject: "English", score: 60 },
+      ],
+    },
+    {
+      name: "Ann",
+      roll_no: 2,
+      subjects: [
+        { subject: "Maths", score: 29 },
+        { subject: "Physics", score: 34 },
+        { subject: "Chemistry", score: 67 },
+        { subject: "Computer", score: 90 },
+        { subject: "English", score: 59 },
+      ],
+    },
+    {
+      name: "Tom",
+      roll_no: 3,
+      subjects: [
+        { subject: "Maths", score: 89 },
+        { subject: "Physics", score: 90 },
+        { subject: "Chemistry", score: 50 },
+        { subject: "Computer", score: 100 },
+        { subject: "English", score: 84 },
+      ],
+    },
+    {
+      name: "Mary",
+      roll_no: 4,
+      subjects: [
+        { subject: "Maths", score: 40 },
+        { subject: "Physics", score: 70 },
+        { subject: "Chemistry", score: 80 },
+        { subject: "Computer", score: 90 },
+        { subject: "English", score: 80 },
+      ],
+    },
+    {
+      name: "Janet",
+      roll_no: 5,
+      subjects: [
+        { subject: "Maths", score: 89 },
+        { subject: "Physics", score: 90 },
+        { subject: "Chemistry", score: 50 },
+        { subject: "Computer", score: 100 },
+        { subject: "English", score: 84 },
+      ],
+    },
+    {
+      name: "Aaron",
+      roll_no: 6,
+      subjects: [
+        { subject: "Maths", score: 89 },
+        { subject: "Physics", score: 90 },
+        { subject: "Chemistry", score: 50 },
+        { subject: "Computer", score: 100 },
+        { subject: "English", score: 84 },
+      ],
+    },
+  ],
+};
+
 //Total marks for all students
 
 const sumOfMarks = (studentObj) => {
@@ -132,24 +204,69 @@ const showStudent = (obj, id) => {
 
 //add new student in the db
 
-function addStudent(name, roll_no, subjects, obj) {
+function addStudent(name, subjects, obj) {
+  if (!name || !subjects || !obj) return "invalid";
   let students = obj.students;
   let student = {};
 
   student.name = name;
-  student.roll_no = roll_no;
+  student.roll_no = students.length;
   student.subjects = subjects;
   students[students.length] = student;
 
   return students;
 }
 
-function updateStudent(id, property, tobeUpdated, obj) {
-  let student = showStudent(obj, id);
-}
-//testcases
+//update student details
+//asumes ids is in the order 0,1,2,3,4..
 
-function testFindTopper() {
+const updateStudent = (id, property, tobeUpdated, obj) => {
+  if (id < 0 || id > obj.students.length || typeof id !== "number")
+    return "invalid";
+
+  let student = showStudent(obj, id);
+
+  if (!student.hasOwnProperty(property)) return "invalid";
+
+  student[property] = tobeUpdated;
+
+  return student[property];
+};
+
+//update student marks
+
+const updateMarks = (id, subject, score, obj) => {
+  if (
+    id < 0 ||
+    id > obj.students.length ||
+    typeof id !== "number" ||
+    typeof score !== "number" ||
+    score > 100 ||
+    !subject ||
+    !obj ||
+    score < 0
+  )
+    return "invalid";
+
+  let student = showStudent(obj, id);
+  let result;
+
+  for (let sub of student.subjects) {
+    if (sub.subject === subject) {
+      sub.score = score;
+      result = sub.score;
+      break;
+    } else {
+      result = "invalid";
+    }
+  }
+
+  return result;
+};
+
+console.log(updateMarks(1, "Maths", 42, studentObj));
+
+const testFindTopper = () => {
   const tcs = [
     {
       input: studentObj,
@@ -177,7 +294,7 @@ function testFindTopper() {
       console.log(`testcase ${i + 1} failed`);
     }
   }
-}
+};
 
 function testShowStudent() {
   const tcs = [
@@ -217,27 +334,32 @@ function testAddStudent() {
   const tcs = [
     {
       input1: "Aaron",
-      input2: 6,
-      input3: [
+      input2: [
         { subject: "Maths", score: 89 },
         { subject: "Physics", score: 90 },
         { subject: "Chemistry", score: 50 },
         { subject: "Computer", score: 100 },
         { subject: "English", score: 84 },
       ],
-      input4: studentObj,
+      input3: studentObj,
       expected: studentObj.students,
+    },
+    {
+      input1: "",
+      input2: [
+        { subject: "Maths", score: 89 },
+        { subject: "Physics", score: 90 },
+        { subject: "Chemistry", score: 50 },
+        { subject: "Computer", score: 100 },
+        { subject: "English", score: 84 },
+      ],
+      input3: studentObj,
+      expected: "invalid",
     },
   ];
 
   for (let i = 0; i < tcs.length; i++) {
-    let got = addStudent(
-      tcs[i].input1,
-      tcs[i].input2,
-      tcs[i].input3,
-      tcs[i].input4
-    );
-
+    let got = addStudent(tcs[i].input1, tcs[i].input2, tcs[i].input3);
     if (compareValue(got, tcs[i].expected)) {
       console.log(`testcase ${i + 1} passed`);
     } else {
@@ -245,6 +367,87 @@ function testAddStudent() {
     }
   }
 }
+
+function testUpdateStudent() {
+  const tcs = [
+    {
+      input1: 1,
+      input2: "name",
+      input3: "Eliza",
+      input4: studentObj,
+      expected: "Eliza",
+    },
+    {
+      input1: 7,
+      input2: "name",
+      input3: "Eliza",
+      input4: studentObj,
+      expected: "invalid",
+    },
+    {
+      input1: 2,
+      input2: "age",
+      input3: "Eliza",
+      input4: studentObj,
+      expected: "invalid",
+    },
+  ];
+
+  for (let i = 0; i < tcs.length; i++) {
+    let got = updateStudent(
+      tcs[i].input1,
+      tcs[i].input2,
+      tcs[i].input3,
+      tcs[i].input4
+    );
+    if (compareValue(got, tcs[i].expected)) {
+      console.log(`testcase ${i + 1} passed`);
+    } else {
+      console.log(`testcase ${i + 1} failed`);
+    }
+  }
+}
+
+function testUpdateMarks() {
+  const tcs = [
+    {
+      input1: "1",
+      input2: "Maths",
+      input3: 98,
+      input4: studentObj,
+      expected: "invalid",
+    },
+    {
+      input1: 1,
+      input2: "Mat",
+      input3: 98,
+      input4: studentObj,
+      expected: "invalid",
+    },
+    {
+      input1: 8,
+      input2: "Maths",
+      input3: 98,
+      input4: studentObj,
+      expected: "invalid",
+    },
+  ];
+
+  for (let i = 0; i < tcs.length; i++) {
+    let got = updateMarks(
+      tcs[i].input1,
+      tcs[i].input2,
+      tcs[i].input3,
+      tcs[i].input4
+    );
+    if (got === tcs[i].expected) {
+      console.log(`testcase ${i + 1} passed`);
+    } else {
+      console.log(`testcase ${i + 1} failed`);
+    }
+  }
+}
+
 const compareValue = (got, exp) => {
   let i = 0;
 
@@ -256,6 +459,8 @@ const compareValue = (got, exp) => {
   return true;
 };
 
-//testFindTopper();
-//testShowStudent();
-testAddStudent();
+// testFindTopper();
+// testShowStudent();
+// testAddStudent();
+// testUpdateStudent();
+testUpdateMarks();
