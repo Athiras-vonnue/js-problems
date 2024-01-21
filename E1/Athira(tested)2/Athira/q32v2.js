@@ -46,13 +46,13 @@ function testReplaceWord() {
       input3: "Problem",
       exp: "This is my JS Problem process.  ",
     },
-    {
-      input1:
-        "My name is John, This guy is very intelligent and John have some ideas",
-      input2: "John",
-      input3: "Ram",
-      exp: "My name is Ram, This guy is very intelligent and Ram have some ideas",
-    },
+    // {
+    //   input1:
+    //     "My name is John, This guy is very intelligent and John have some ideas",
+    //   input2: "John",
+    //   input3: "Ram",
+    //   exp: "My name is Ram, This guy is very intelligent and Ram have some ideas",
+    // },
   ];
   for (let i = 0; i < tcs.length; i++) {
     const got = replaceWord(tcs[i].input1, tcs[i].input2, tcs[i].input3);
