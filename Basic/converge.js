@@ -34,7 +34,8 @@ function converge(num) {
   return 0;
 }
 
-testCase();
+console.log(converge(10));
+//testCase();
 
 //testcase for converge function
 
