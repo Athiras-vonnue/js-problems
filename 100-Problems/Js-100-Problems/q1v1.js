@@ -63,6 +63,11 @@ function testGetClassName() {
   const tcs = [
     {
       input1: classObj,
+      input2: "nam",
+      exp: "invalid",
+    },
+    {
+      input1: classObj,
       input2: "name",
       exp: "class A",
     },

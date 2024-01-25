@@ -49,84 +49,105 @@ let classObj = {
   ],
 };
 
-//function to calculate and print the number of students who scored above & below a certain mark in a specific subject
+//Function to find perentage
 
-const getStudentsCountBasedSpecificMarkInSub = (
-  obj,
-  condition,
-  subject,
-  specificMark
-) => {
-  if (
-    typeof obj !== "object" ||
-    Array.isArray(obj) ||
-    !Object.keys(obj).length ||
-    !isAvail(subject)
-  )
-    return "invalid";
-
-  let count = 0;
-  const students = obj.students;
-  students.forEach((student) => {
-    const marks = student.marks;
-    marks.forEach((mark) => {
-      if (mark.subject === subject) {
-        switch (condition) {
-          case "above":
-            if (mark.mark >= specificMark) {
-              count++;
-            }
-            break;
-          case "below":
-            if (mark.mark <= specificMark) {
-              count++;
-            }
-            break;
-
-          default:
-            count =
-              "Entered choice not available! Please Enter the correct one";
-        }
-      }
-    });
-  });
-
-  return count;
+const percentage = (obtained, total) => {
+  return `${(obtained / total) * 100}%`;
 };
 
-function isAvail(item) {
-  const students = classObj.students;
-  let res = students[0].marks.find((sub) => sub.subject === item);
+//Write a function to calculate and print the number of students who scored above & below a certain mark in all subjects.
 
-  if (res != undefined) {
-    return true;
-  } else {
-    return false;
-  }
-}
+const countofStudentsScoredSpecificMarkInAllSub = (
+  obj,
+  option,
+  specificMark
+) => {
+  if (typeof obj !== "object" || Array.isArray(obj) || !Object.keys(obj).length)
+    return "invalid";
+
+  let studentCount = 0;
+  let count = 0;
+  const students = classObj.students;
+
+  students.forEach((student) => {
+    const marks = student.marks;
+    count = 0;
+
+    marks.forEach((mark) => {
+      switch (option) {
+        case "above":
+          if (mark.mark >= specificMark) {
+            count++;
+          }
+          break;
+
+        case "below":
+          if (mark.mark < specificMark) {
+            count++;
+          }
+          break;
+
+        default:
+          count = "Entered choice not available! Please Enter the correct one";
+      }
+    });
+
+    if (count === 5 && count != 0 && option == "above") {
+      studentCount++;
+    } else if (count < 5 && count != 0 && option == "below") {
+      studentCount++;
+    } else if (option !== "below" && option !== "above") {
+      studentCount =
+        "Entered choice not available! Please Enter the correct one";
+    }
+  });
+
+  return studentCount;
+};
+
+//Q33 & Q34. Write a function to calculate and print the percentage of students who scored above/below a certain mark in all subjects.
+
+const getStudentsPercentageBasedOnSpecificMarkInAllSub = (
+  obj,
+  option,
+  specificMark
+) => {
+  if (typeof obj !== "object" || Array.isArray(obj) || !Object.keys(obj).length)
+    return "invalid";
+
+  const studentsCountAboveMark = countofStudentsScoredSpecificMarkInAllSub(
+    obj,
+    option,
+    specificMark
+  );
+
+  if (typeof studentsCountAboveMark !== "number") return "invalid";
+  const students = obj.students;
+  const noOfStudents = students.length;
+
+  return percentage(studentsCountAboveMark, noOfStudents);
+};
+
 //testcases
 
-function testGetStudentsCountBasedSpecificMarkInSub() {
+function testGetStudentsPercentageBasedOnSpecificMarkInAllSub() {
   const tcs = [
     {
       obj: classObj,
       choice: "above",
-      subject: "English",
       specificMark: 40,
-      exp: 1,
+      exp: "25%",
     },
     {
       obj: classObj,
       choice: "below",
-      subject: "English",
       specificMark: 40,
-      exp: 3,
+      exp: "50%",
     },
 
     {
       obj: "classObj",
       choice: "above",
-      subject: "English",
       specificMark: 40,
       exp: "invalid",
     },
@@ -134,22 +155,19 @@ function testGetStudentsCountBasedSpecificMarkInSub() {
     {
       obj: classObj,
       choice: "unknown",
-      subject: "English",
       specificMark: 40,
-      exp: "Entered choice not available! Please Enter the correct one",
+      exp: "invalid",
     },
   ];
 
   let i = 0;
 
   while (tcs[i]) {
-    let got = getStudentsCountBasedSpecificMarkInSub(
+    let got = getStudentsPercentageBasedOnSpecificMarkInAllSub(
       tcs[i].obj,
       tcs[i].choice,
-      tcs[i].subject,
       tcs[i].specificMark
     );
-
     if (got === tcs[i].exp) {
       console.log(`Test case ${i + 1} passed`);
     } else {
@@ -159,4 +177,4 @@ function testGetStudentsCountBasedSpecificMarkInSub() {
   }
 }
 
-testGetStudentsCountBasedSpecificMarkInSub();
+testGetStudentsPercentageBasedOnSpecificMarkInAllSub();

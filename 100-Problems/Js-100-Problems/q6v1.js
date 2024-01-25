@@ -55,7 +55,8 @@ const printSubjectMarks = (classObj, studentID) => {
   if (
     typeof classObj !== "object" ||
     Array.isArray(classObj) ||
-    !Object.keys(classObj).length
+    !Object.keys(classObj).length ||
+    !isAvail(studentID)
   )
     return "invalid";
 
@@ -76,6 +77,16 @@ const printSubjectMarks = (classObj, studentID) => {
   return subjectArr;
 };
 
+function isAvail(item) {
+  const students = classObj.students;
+  let res = students.find((itm) => itm.id === item);
+
+  if (res != undefined) {
+    return true;
+  } else {
+    return false;
+  }
+}
 //testcases
 function testPrintSubjectMarks() {
   const tcs = [
@@ -96,6 +107,11 @@ function testPrintSubjectMarks() {
       exp: "invalid",
     },
     {
+      input1: classObj,
+      input2: 103,
+      exp: "invalid",
+    },
+    {
       input1: {},
       input2: "103",
       exp: "invalid",
@@ -105,7 +121,6 @@ function testPrintSubjectMarks() {
   let i = 0;
   while (tcs[i]) {
     let got = printSubjectMarks(tcs[i].input1, tcs[i].input2);
-
     if (compareArray(got, tcs[i].exp)) {
       console.log(`Test case ${i + 1} passed`);
     } else {
@@ -119,12 +134,12 @@ testPrintSubjectMarks();
 
 function compareArray(got, exp) {
   let i = 0;
-  while (got[i]) {
-    if (got[i] !== exp[i]) {
-      return false;
+  while (got[i] && exp[i]) {
+    if (got[i] === exp[i]) {
+      return true;
     }
 
     i++;
   }
-  return true;
+  return false;
 }

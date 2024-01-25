@@ -55,7 +55,8 @@ const findAverage = (classObj, studentID) => {
   if (
     typeof classObj !== "object" ||
     Array.isArray(classObj) ||
-    !Object.keys(classObj).length
+    !Object.keys(classObj).length ||
+    !isAvail(studentID)
   )
     return "invalid";
 
@@ -79,7 +80,8 @@ function findSum(classObj, studentID) {
   if (
     typeof classObj !== "object" ||
     Array.isArray(classObj) ||
-    !Object.keys(classObj).length
+    !Object.keys(classObj).length ||
+    !isAvail(studentID)
   )
     return "invalid";
 
@@ -99,6 +101,17 @@ function findSum(classObj, studentID) {
   return result;
 }
 
+function isAvail(item) {
+  const students = classObj.students;
+  let res = students.find((itm) => itm.id === item);
+
+  if (res != undefined) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 //testcases
 function testFindAverage() {
   const tcs = [
@@ -109,8 +122,8 @@ function testFindAverage() {
     },
     {
       input1: classObj,
-      input2: "107", // id not available return 0
-      exp: 0,
+      input2: "107",
+      exp: "invalid",
     },
     {
       input1: [],
@@ -150,9 +163,10 @@ function testFindSum() {
     },
     {
       input1: classObj,
-      input2: "107", // id not available return 0
-      exp: 0,
+      input2: "107",
+      exp: "invalid",
     },
+
     {
       input1: [],
       input2: "103",
