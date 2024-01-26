@@ -1482,7 +1482,7 @@ console.log(
 //Q69: Write a function to find and print the student(s) who scored above the class average marks in the majority of subjects.
 
 console.log(
-  "Students who scored below the class average marks in the majority of Students who scored below the class average marks in the majority of subjects",
+  "Students who scored above the class average marks in the majority of subjects",
   studentWithScoreBasedClassAvg("above", "studentsWithMajorityOfSubjects")
 );
 
@@ -1765,5 +1765,158 @@ console.log(
 
 //Q85: Write a function to calculate and print the percentage of students who scored above the average marks of the class in each subject.
 
+console.log(
+  "Percentage of students , who scored above class average",
+  studentsPercentageBasedClassAverage("above")
+);
 
 //Q86: Write a function to calculate and print the percentage of students who scored below the average marks of the class in each subject.
+
+console.log(
+  "Percentage of students , who scored below class average",
+  studentsPercentageBasedClassAverage("below")
+);
+
+//87. Write a function to calculate and print the percentage of students who scored above the average marks of the class in at least one subject.
+
+console.log(
+  "Students who scored above the class average marks in at least one subject:",
+  studentPercetageBasedClassAverageInAtleastOneSubject("above")
+);
+
+//88. Write a function to calculate and print the percentage of students who scored below the average marks of the class in at least one subject.
+
+console.log(
+  "Students who scored below the class average marks in at least one subject:",
+  studentPercetageBasedClassAverageInAtleastOneSubject("below")
+);
+
+//89. Write a function to find and print the student(s) who scored above the average marks of the class in all subjects.
+
+console.log(
+  "Students who scored above the class average marks in all subjects",
+  studentWithScoreBasedClassAvg("above", "studentsWithAllsubjects")
+);
+
+//90. Write a function to find and print the student(s) who scored below the average marks of the class in all subjects.
+
+console.log(
+  "Students who scored above the class average marks in all subjects",
+  studentWithScoreBasedClassAvg("below", "studentsWithAllsubjects")
+);
+
+//91. Write a function to find and print the student(s) who scored above the average marks of the class in the majority of subjects.
+
+console.log(
+  "Students who scored above the class average marks in the majority of subjects",
+  studentWithScoreBasedClassAvg("above", "studentsWithMajorityOfSubjects")
+);
+
+//92. Write a function to find and print the student(s) who scored below the average marks of the class in the majority of subjects.
+
+console.log(
+  "Students who scored below the class average marks in the majority of subjects",
+  studentWithScoreBasedClassAvg("below", "studentsWithMajorityOfSubjects")
+);
+
+//93. Write a function to find and print the subject(s) in which the majority of students scored above the average marks of the class.
+
+console.log(
+  "subject(s) in which the majority of students scored above the class average marks",
+  subWithStudentsScoredBasesClassAvg("above")
+);
+
+//94. Write a function to find and print the subject(s) in which the majority of students scored below the average marks of the class.
+
+console.log(
+  "subject(s) in which the majority of students scored below the class average marks",
+  subWithStudentsScoredBasesClassAvg("below")
+);
+
+//Write a function to find and print the student(s) who scored above/below the specific student average marks in majority of subjects.
+
+const studentWithScoreBasedStudentAvg = (option, choice, studentID) => {
+  const students = classObj.students;
+  const average = findAverage(studentID);
+  let count = 0;
+  let studentName = "";
+  let highestCount = 0;
+
+  const nameArray = students.map((student) => {
+    const subjects = student.marks;
+    studentName = student.name;
+    count = 0;
+
+    subjects.map((subject) => {
+      switch (option) {
+        case "above":
+          if (average <= subject.mark) {
+            count++;
+          }
+          break;
+
+        case "below":
+          if (average > subject.mark) {
+            count++;
+          }
+          break;
+
+        default:
+          return "Sorry!, Please choose correct option";
+      }
+    });
+
+    if (highestCount < count) {
+      highestCount = count;
+    }
+    return { studentName, count };
+  });
+
+  switch (choice) {
+    case "studentsWithMajorityOfSubjects":
+      let studCount = nameArray.filter(
+        (count) => count.count === highestCount
+      ).length;
+      return percentage(studCount, students.length);
+      break;
+
+    default:
+      return "Sorry!, Please choose correct option";
+  }
+};
+
+//Q95&97. Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in the majority of subjects.
+
+console.log(
+  "percentage of students who scored above the average marks of a specific student in the majority of subjects",
+  studentWithScoreBasedStudentAvg(
+    "above",
+    "studentsWithMajorityOfSubjects",
+    "104"
+  )
+);
+
+//Q96&98. Write a function to calculate and print the percentage of students who scored below the average marks of a specific student in the majority of subjects.
+
+console.log(
+  "percentage of students who scored below the average marks of a specific student in the majority of subjects",
+  studentWithScoreBasedStudentAvg(
+    "below",
+    "studentsWithMajorityOfSubjects",
+    "104"
+  )
+);
+
+//Q99. Write a function to find and print the subject(s) in which the highest percentage of students scored above the average marks of a specific student.
+
+console.log(
+  "subject(s) in which the highest percentage of students scored above the average marks of a specific student",
+  subWithStudentsScoredBasedOnStudAvg("101", "above", "highest")
+);
+
+//Q100. Write a function to find and print the subject(s) in which the highest percentage of students scored below the average marks of a specific student.
+
+console.log(
+  "subject(s) in which the highest percentage of students scored below the average marks of a specific student",
+  subWithStudentsScoredBasedOnStudAvg("104", "below", "highest")
+);
